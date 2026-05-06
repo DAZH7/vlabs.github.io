@@ -1,0 +1,21 @@
+    table, th, td {
+  border-spacing:0;border:1px solid #ccc;color: #FFFFFF; margin: 7px; padding:5px;
+}
+p{color: #FFFFFF; }
+
+h2{color: #FFFFFF; font-weight: bolder;}
+h3 {
+	color: #808080;
+	font-weight: bolder;
+}
+body {
+	background-color: #1f1f1f;
+}
+
+#c1 {
+	width: 21cm;
+	height: 27cm;
+	border: 1px solid black;
+	margin: 5px;
+	background-image: url(image.webp);
+}

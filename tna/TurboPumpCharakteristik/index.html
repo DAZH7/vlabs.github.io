@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="ru-ru" http-equiv="Content-Language" />
+  <meta name="viewport" content="witdh=device-width, initial-scale=1.0">
+  <title>ХАРАКТЕРИСТИКИ ТНА</title>
+    <script src="core.js"></script>
+	<script src="mathutils.js"></script>
+	<link rel="stylesheet" href="styles.css">
+		
+</head>
+
+<body onload="onInit()">
+
+    <h2>ХАРАКТЕРИСТИКИ Турбонасосного агрегата</h2>
+    <h3>Version 1.230324</h3>
+    <P>
+        <b>Цель работы:</b>  экспериментально определить характеристики
+        центробежного насоса, а также ознакомиться с методикой проведения
+        испытаний и обработкой опытных данных.
+    </P>
+
+    <p>
+        Ввести исходные данные, далее
+        нажать "Новый эксперимент" и
+        задавая новые значения "Угловой скорости"
+        нажать "ЗАМЕР".
+        Произвести 6-8 замеров.
+    </p>
+
+    <P>
+        Исходные данные:
+    </P>
+    </P>
+    <table>
+        <tr>
+            <td valign="top">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            КОНСТАНТЫ:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Плотность рабочей жидкости, кг/кб.м:
+                        </td>
+                        <td>
+                            <input id="txt_ro" TYPE="text" VALUE="1000" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Давление жидкости на входе p1, Па:
+                        </td>
+                        <td>
+                            <input id="txtP1" TYPE="text" VALUE="37000" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Температура жидкости на входе t1, C:
+                        </td>
+                        <td>
+                            <input id="txt_t1" TYPE="text" VALUE="13" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            РЕЖИМ:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Угловая скорость, Гц:
+                        </td>
+                        <td>
+                            <input id="slider_w" TYPE="range" VALUE="1" max="100" min="0" oninput="oninputslider_w()" />
+                            <br />
+                            <input id="txtW" TYPE="text" readonly=readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Объемный расход, Гц :
+                        </td>
+                        <td>
+                            <input id="txt_V1" TYPE="text" readonly=readonly />
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <input TYPE="button" VALUE="Новый эксперимент" width="300" height="200" ONCLICK="New()" />
+                            <a class="c-btn" rel=" noopener" ONCLICK="New()"><span>Новый эксперимент</span></a>
+                        </td>
+                        <td>
+                            <input id="bttnRegister" TYPE="button" VALUE="ЗАМЕР" width="300" height="200" ONCLICK="Register()" disabled=disabled />
+                        </td>
+                    </tr>
+                </table>
+
+                <hr />
+                <P>
+                    ПАРАМЕТРЫ режима:<div id="idInfo"></div>
+                </P>
+                <hr />
+                <P>
+                    Результаты замеров для режима:
+                </P>
+                <div id="id0">Результат:</div>
+
+            </td>
+            <td>
+                <p>
+                    Схема экспериментального стенда испытания
+                    высокооборотных агрегатов
+                </p>
+                <canvas id="c1"></canvas>
+                <P>
+                    1, 14 – термометры; 2 – центробежный насос; 3 – турбопривод; <br />
+                    4 – емкость расходная; 5, 22, 23, 26, 27, 28, 29, 31, 32 – вентили запорные; <br />
+                    7, 8, 9 – вен-тили регулирующие; 6, 17, 18, 19, 30, 35, 38, 40 – манометры; <br />
+                    37, 39 – датчи-ки давления; 10, 11, 12 – датчики расхода; 24 – обратный клапан; <br />
+                    21 – предохранительный клапан; 25 – фильтр; <br />
+                    13 – гидродинамическое радиальное уплотнение; <br />
+                    20 – датчик частоты вращения; 36 – вакуумный насос
+
+                </P>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
