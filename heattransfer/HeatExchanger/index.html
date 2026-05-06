@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="ru-ru" http-equiv="Content-Language" />
+    <meta name="viewport" content="witdh=device-width, initial-scale=1.0" />
+    <title>HeatExchanger</title>
+    <script src="codecore.js"></script>
+    <script src="mathutils.js"></script>
+    <link rel="stylesheet" href="pstyles.css" />
+    <!--copyright, www.sibsau.ru, d_zhuikov@sibsau.ru, 2024-->
+
+</head>
+
+<body bgcolor="#406025" onload="onInit()">
+    <h2>
+        ЛАБОРАТОРНАЯ РАБОТА.
+    </h2>
+    <h2>
+        ИССЛЕДОВАНИЕ РАБОТЫ ТЕПЛООБМЕННОГО АППАРАТА
+        ПРИ ИМИТАЦИОННОМ МОДЕЛИРОВАНИИ
+    </h2>
+    <h3>СибГУ им. М. Ф. Решетнева, 2024</h3>
+    <h4>Version 1.20241206</h4>
+<p class="licinfa">
+СВИДЕТЕЛЬСТВО
+о государственной регистрации программы для ЭВМ № 2026610992<br/>
+Комплекс имитационных лабораторных работ по
+дисциплине «Теплопередача в РКТ»
+Правообладатель: Федеральное государственное бюджетное
+образовательное учреждение высшего образования
+«Сибирский государственный университет науки и
+технологий имени академика М.Ф. Решетнева» (RU)
+Авторы: Жуйков Дмитрий Александрович (RU), Черненко
+Валентина Викторовна (RU)
+Заявка № 2026610322
+Дата поступления 16 января 2026 г.
+Дата государственной регистрации
+в Реестре программ для ЭВМ 16 января 2026 г.
+ </p>
+
+    <P>
+        <b>Цель работы:</b>  установить зависимость тепловой мощности
+        аппарата, коэффициентов теплопередачи и теплоотдачи от различных
+        факторов с помощью численного эксперимента при имитационном
+        моделировании.
+    </P>
+
+    <P>
+        Исходные данные:
+    </P>
+
+    <table>
+        <!--
+    <tr>
+        <td>
+            Теплоноситель Горячий:
+        </td>
+        <td>
+            <SELECT ID="selectorTypeFlow1">
+                <option value="0" selected=selected> В О З Д У Х </option>
+                <option value="1"> В О Д А </option>
+            </SELECT>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Теплоноситель Холодный:
+        </td>
+        <td>
+            <SELECT ID="selectorTypeFlow2">
+                <option value="0" selected=selected> В О З Д У Х </option>
+                <option value="1"> В О Д А </option>
+            </SELECT>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            СХЕМА ТЕЧЕНИЯ:
+        </td>
+        <td>
+            <SELECT ID="selectorFlowDirection">
+                <option value="0" selected=selected> П Р Я М О Т О К </option>
+                <option value="1"> П Р О Т И В О Т О К </option>
+            </SELECT>
+        </td>
+    </tr>-->
+        <tr>
+            <td>
+                Диаметр внутренний D1, мм:
+            </td>
+            <td>
+                <input  id="editbox_D1" name="editbox_D1" TYPE="text" VALUE="22" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Диаметр внутренний D2, мм:
+            </td>
+            <td>
+                <input id="editbox_D2" name="editbox_D2" TYPE="text" VALUE="24" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Диаметр наружный D3, мм:
+            </td>
+            <td>
+                <input id="editbox_D3" name="editbox_D3" TYPE="text" VALUE="25" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Длина теплообменника L, мм:
+            </td>
+            <td>
+                <input id="editbox_L" name="editbox_L" TYPE="text" VALUE="1000" />
+            </td>
+        </tr>
+
+        <tr style="margin-bottom:200px">
+            <td>
+                <input TYPE="button" VALUE="Новый эксперимент" ONCLICK="New()" style="width:200px;height:50px" />
+            </td>
+            <td>
+                <input id="bttnGetValues" name="bttnGetValues" hidden TYPE="button" VALUE="ЗАМЕР" ONCLICK="Register()" style="width:200px;height:50px" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Реостат насоса Холодного теплоносителя, %:
+            </td>
+            <td>
+                <input id="slider_P_x" TYPE="range" VALUE="20" max="100" min="0" oninput="oninputslider_P_x()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Реостат насоса Горячего теплоносителя, %:
+            </td>
+            <td>
+                <input id="slider_P_g" TYPE="range" VALUE="20" max="100" min="0" oninput="oninputslider_P_g()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Реостат нагрева Горячего теплоносителя, %:
+            </td>
+            <td>
+                <input id="slider_Q_g" TYPE="range" VALUE="20" max="100" min="0" oninput="oninputslider_Q_g()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Реостат нагрева Холодного теплоносителя, %:
+            </td>
+            <td>
+                <input id="slider_Q_x" TYPE="range" VALUE="20" max="100" min="0" oninput="oninputslider_Q_x()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="image.png" width="600" />
+            </td>
+            <td>
+                <p> Текущие параметры аппарата</p>
+                <table>
+                    <tr><td>Pg</td><td><input id="V_Pg" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>dPg</td><td><input id="V_dPg" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>Px</td><td><input id="V_Px" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>dPx</td><td><input id="V_dPx" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>Eг1</td><td><input id="E_Tg1" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>Eг2</td><td><input id="E_Tg2" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>Ex1</td><td><input id="E_Tx1" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                    <tr><td>Ex2</td><td><input id="E_Tx2" TYPE="text" VALUE="0" readonly=readonly style="text-align:right;" size="4" /></td></tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+    <hr />
+    <p>
+
+    </p>
+    <P>
+        <b>Результаты замеров для режима:</b>
+        <div id="idInfo"></div>
+    </P>
+    <hr />
+    <div id="id0">Результат:</div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+hmtl {
+    margin: 5px 0px 0px 0px;
+    padding: 0px;
+    font-family: Times;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+}
+h1 {
+    color: rgb(255, 255, 255);
+    margin: 5px 5px 5px 5px;
+    font-family: Times;
+    font-size: 16px;
+}
+h2, h3 {
+    color: rgb(255, 255, 255);
+    margin: 5px 5px 5px 5px;
+    font-family: Times;
+    font-size: 14px;
+}
+  h4{
+  color: rgb(128, 64, 64);
+  margin: 5px 0px 0px 0px;
+    font-family: Times;
+    font-size: 12px;
+  }
+
+ol, li, p, label {
+    color: rgb(255, 255, 255);
+    margin: 5px 5px 5px 5px;
+    font-family: Times;
+    font-size: 14px;
+}
+table {
+border-collapse: collapse;
+}
+
+table, td {
+    color: rgb(255, 255, 255);
+    border: 1px solid white;
+    margin: 5px;
+    padding: 5px;
+}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0b0c45;
+    color: white;
+}
+body
+{
+background-color: #1f1f1f;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: yellow;
+}
+.error {
+    color: rgb(255, 0, 0);
+    font-family: Times;
+    font-size: 24px;
+    font-weight:bold;
+}
+
+.licinfa {
+    background-color: black;
+    color:gray;
+    border: 1px solid black;
+    padding: 10px;
+    font-family: Times;
+    font-size: 12px;
+}
